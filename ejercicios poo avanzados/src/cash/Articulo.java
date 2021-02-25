@@ -16,11 +16,11 @@ public class Articulo {
 	
 	private double precio ;
 	
-	private double unidades ;
+	private int unidades ;
 	
 	private long milisec ;
 
-	public Articulo( String nombre, double precio, double unidades,int dia , int mes , int anio) {
+	public Articulo( String nombre, double precio, int unidades,int dia , int mes , int anio) {
 		this.identificador = (int)(Math.random()*Math.pow(10, 8)) ;
 		this.nombre = nombre;
 		this.precio = precio;
@@ -40,6 +40,14 @@ public class Articulo {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		return "Identificador=" + identificador + ", Nombre=" + nombre + ", Fecha de caducidad=" + formatter.format(fechaCaducidad)
 				+ ", Precio=" + precio + ", Unidades=" + unidades + "\n";
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public int getUnidades() {
+		return unidades;
 	}
 	
 	
