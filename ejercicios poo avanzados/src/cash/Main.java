@@ -1,6 +1,7 @@
 package cash;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.swing.JOptionPane;
 
@@ -22,7 +23,7 @@ public class Main {
 		
 		double precio =Double.parseDouble(JOptionPane.showInputDialog(null,"Introduzca el precio del producto")) ;
 		
-		int unidades =Integer.parseInt(JOptionPane.showInputDialog(null,"Introduzca el precio del producto")) ;
+		int unidades =Integer.parseInt(JOptionPane.showInputDialog(null,"Introduzca las unidades del producto")) ;
 		
 		articulo.add(new Articulo(nombre,precio,unidades,dia,mes,anio)) ;
 	}
@@ -32,35 +33,42 @@ public class Main {
 		ArrayList<Articulo> articulo = new ArrayList<Articulo>() ;
 
 		
+	do {
 		String opciones[] = {"Introducir artículos", "Ordenar productos", "Mostrar listado","Stock","Salir"} ;
 		int menu = JOptionPane.showOptionDialog(null, "Seleccione una opcción:", "Menu", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[4]);
-
-		switch (menu) {
-		case 0:
 			
-			registrar(articulo) ;
-			
-			break;
-			
-		case 1:
-			
-			break;
-			
-		case 2:
-			
-			break;
-			
-		case 3:
-			
-			break;
-			
-		case 4:
-			
-			System.exit(0);
-			
-			break;
-			
-		}
+			switch (menu) {
+			case 0:
+				
+				registrar(articulo) ;
+				
+				break;
+				
+			case 1:
+				
+				Collections.sort(articulo, new CompararFecha()) ;
+				
+				break;
+				
+			case 2:
+				
+				JOptionPane.showMessageDialog(null,articulo.toString()) ;
+				
+				break;
+				
+			case 3:
+				
+				break;
+				
+			case 4:
+				
+				System.exit(0);
+				
+				break;
+				
+			}
+		
+		}while(true) ;
 	}
 
 }

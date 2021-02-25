@@ -1,5 +1,6 @@
 package cash;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -16,6 +17,8 @@ public class Articulo {
 	private double precio ;
 	
 	private double unidades ;
+	
+	private long milisec ;
 
 	public Articulo( String nombre, double precio, double unidades,int dia , int mes , int anio) {
 		this.identificador = (int)(Math.random()*Math.pow(10, 8)) ;
@@ -24,9 +27,21 @@ public class Articulo {
 		this.unidades = unidades;
 		Calendar calendario = Calendar.getInstance() ;
 		calendario.set(anio, mes, dia);
+		fechaCaducidad = calendario.getTime() ;
+		milisec = calendario.getTimeInMillis() ;
+	}
+
+	public long getMilisec() {
+		return milisec;
+	}
+
+	@Override
+	public String toString() {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		return "Identificador=" + identificador + ", Nombre=" + nombre + ", Fecha de caducidad=" + formatter.format(fechaCaducidad)
+				+ ", Precio=" + precio + ", Unidades=" + unidades + "\n";
 	}
 	
-	//metodos
 	
-	
+
 }
