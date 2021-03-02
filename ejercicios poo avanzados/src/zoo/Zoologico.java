@@ -14,7 +14,7 @@ public class Zoologico {
 	
 	private static int idNext = 1 ;
 	
-	//new
+	//new comment
 	public Zoologico(double peso, double altura, String nombre, String habitat) {
 		this.peso = peso;
 		this.altura = altura;
