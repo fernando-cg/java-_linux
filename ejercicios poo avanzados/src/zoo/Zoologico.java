@@ -13,7 +13,8 @@ public class Zoologico {
 	private String habitat ;
 	
 	private static int idNext = 1 ;
-
+	
+	//new
 	public Zoologico(double peso, double altura, String nombre, String habitat) {
 		this.peso = peso;
 		this.altura = altura;
