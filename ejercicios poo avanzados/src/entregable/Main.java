@@ -10,15 +10,17 @@ import javax.swing.JPanel;
 
 public class Main {
 	
-	public static void regcliente(ArrayList<Cliente> clientes) {
+	public static void regcliente(ArrayList<Cliente> clientes, ArrayList<Pelicula> peliculas, ArrayList<Juego> juegos) {
 		
 		String opciones[] = {"Alquilar producto","Devolver producto","volver atrás"} ;
 		
 		int menu = JOptionPane.showOptionDialog(null, "¿Seleccione una oppción?", "Cliente", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[2]);
 		
 		switch (menu) {
+		
 		case 0:
 			
+			/*
 			ArrayList<String> salida2 = new ArrayList<String>() ;
 			
 			for(int x = 0 ; x < clientes.size() ; x++) {
@@ -30,6 +32,44 @@ public class Main {
 			}
 			
 			int seleccion =JOptionPane.showInputDialog(null,"Seleccione opcion","Selector de opciones",JOptionPane.QUESTION_MESSAGE, salida2.toArray())
+			*/
+			
+			String respuesta = JOptionPane.showInputDialog("introduzca su dni como en el ejemplo", "123451214f");
+			
+			String selecion[] = {"Pelicula","Videojuego","volver atrás"} ;
+			
+			int tipoalquiler = JOptionPane.showOptionDialog(null, "¿Seleccione que desea alquilar?", "Tipo de alquiler", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[2]);
+			
+			switch (tipoalquiler) {
+			
+			case 0:
+				
+				String[] pelis = new String[peliculas.size()];
+				
+			for(int x = 0 ; x < peliculas.size() ; x++) {
+			
+				
+					
+					String salida = (x+1)+ " " + peliculas.get(x).getTitulo()+ " " +clientes.get(x).getDni() ;
+					
+					pelis[x] = salida ;
+			}
+			
+			 int resp = JOptionPane.showInputDialog(null, "Seleccione una pelicula", "Peliculas", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, pelis, pelis[0]);
+				
+				break;
+				
+			case 1:
+				
+				String[] games = new String[juegos.size()];
+				
+				break;
+				
+			case 2:
+				
+				break;
+				
+			}
 			
 			break;
 
@@ -81,7 +121,7 @@ public class Main {
 		
 				case 1:
 					
-					regcliente(clientes) ;
+					regcliente(clientes,peliculas,juegos) ;
 					
 					break;
 					

@@ -26,6 +26,12 @@ public class Producto {
 		this.disponible = disponible;
 		this.cantidadDisponible = cantidadDisponible;
 	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+	
+	
 	
 	
 }

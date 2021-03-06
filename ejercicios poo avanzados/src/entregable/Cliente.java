@@ -1,5 +1,5 @@
 package entregable;
-
+//automatizar las id con static
 public class Cliente extends Usuario{
 	
 	private int id ;
