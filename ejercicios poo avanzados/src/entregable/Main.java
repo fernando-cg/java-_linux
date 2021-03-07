@@ -12,6 +12,8 @@ public class Main {
 	
 	public static void regcliente(ArrayList<Cliente> clientes, ArrayList<Pelicula> peliculas, ArrayList<Juego> juegos, ArrayList<Alquiler> alquileres) {
 		
+		//hay bucles que hay que modifficarlos como el de validacion de que al alquilar un producto no este vacio pero no sabia que valor coge la variable cuando se pulsa la x , me hubiera gustado añadir un parametro contraseña , un try catch en los bucles de validacion de dni porque si le pongo un metodo de salida el bucle da error , y me hubiera gustado añadir validaciones a todo lo que el usuario mete por teclado. Esto es lo que me ha faltado porque no me ha dado tiempo
+		
 		boolean condicion = true ;
 		int posicion = 0 ;
 		int id = 0;
@@ -32,10 +34,11 @@ public class Main {
 			
 			
 		}while(condicion == true && !(respuesta.equals("null"))) ;
-		
+		int menu ;
+		do {
 		String opciones[] = {"Alquilar producto","Devolver producto","volver atrás"} ;
 		
-		int menu = JOptionPane.showOptionDialog(null, "¿Seleccione una oppción?", "Cliente", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[2]);
+		 menu = JOptionPane.showOptionDialog(null, "¿Seleccione una oppción?", "Cliente", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[2]);
 		
 		switch (menu) {
 		
@@ -64,10 +67,12 @@ public class Main {
 			JPanel panel = new JPanel(new GridBagLayout());
 			JComboBox box = new JComboBox(pelis);
 			
+			int resp ;
+			do {
 			JOptionPane.showMessageDialog(null, box, "Seleccione una película",JOptionPane.QUESTION_MESSAGE);
 			
-			int resp = box.getSelectedIndex() ;
-			
+			resp = box.getSelectedIndex() ;
+			}while(peliculas.get(resp).getCantidadDisponible()<=0) ;
 			int respuesta3 = Integer.parseInt(JOptionPane.showInputDialog("Introduzca la ID del empleado","1")) ;
 			
 			alquileres = clientes.get(posicion).alquilarProducto(alquileres,respuesta3,peliculas.get(resp).getCodigo()) ;
@@ -93,9 +98,13 @@ public class Main {
 			
 			JComboBox box2 = new JComboBox(games);
 			
+			int resp2 ;
+			
+			do {
 			JOptionPane.showMessageDialog(null, box2, "Seleccione un juego",JOptionPane.QUESTION_MESSAGE);
 			
-			int resp2 = box2.getSelectedIndex() ;
+			resp2 = box2.getSelectedIndex() ;
+			}while(juegos.get(resp2).getCantidadDisponible() <= 0) ;
 			
 			int respuesta4 = Integer.parseInt(JOptionPane.showInputDialog("Introduzca la ID del empleado","1")) ;
 			
@@ -155,6 +164,8 @@ public class Main {
 			break;
 		}
 		
+		}while(menu != 2) ;
+		
 	}
 	
 	public static void regempleado(ArrayList<Empleado> empleados, ArrayList<Pelicula> peliculas, ArrayList<Juego> juegos, ArrayList<Cliente> clientes) {
@@ -178,103 +189,108 @@ public class Main {
 			
 		}while(condicion == true && !(respuesta.equals("null"))) ;
 		
-		String opciones[] = {"Opciones Cliente","Opciones Productos","volver atrás"} ;
+		int menu ;
 		
-		int menu = JOptionPane.showOptionDialog(null, "¿Seleccione una oppción?", "Empleado", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[2]);
-		
-		switch (menu) {
-		case 0:
-
-			String opciones2[] = {"Agregar cliente","Modificar Cliente","Eliminar cliente","Volver atrás"} ;
+		do {
+			String opciones[] = {"Opciones Cliente","Opciones Productos","volver atrás"} ;
 			
-			int menu2 = JOptionPane.showOptionDialog(null, "¿Seleccione una oppción?", "Empleado", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones2, opciones2[3]);
+			menu = JOptionPane.showOptionDialog(null, "¿Seleccione una oppción?", "Empleado", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[2]);
 			
-			switch (menu2) {
+			switch (menu) {
 			case 0:
+	
+				String opciones2[] = {"Agregar cliente","Modificar Cliente","Eliminar cliente","Volver atrás"} ;
 				
-				clientes = empleados.get(posicion).agregarCliente(clientes);
+				int menu2 = JOptionPane.showOptionDialog(null, "¿Seleccione una oppción?", "Empleado", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones2, opciones2[3]);
+				
+				switch (menu2) {
+				case 0:
+					
+					clientes = empleados.get(posicion).agregarCliente(clientes);
+					
+					break;
+	
+				case 1:
+					
+					clientes = empleados.get(posicion).modificarCliente(clientes);
+					
+					break;
+					
+				case 2:
+					clientes = empleados.get(posicion).eliminarCliente(clientes);
+					break;
+					
+				case 3:
+					
+					break;
+				}
 				
 				break;
-
+	
 			case 1:
 				
-				clientes = empleados.get(posicion).modificarCliente(clientes);
+				String opciones3[] = {"Añadir producto","Modificar producto","Eliminar producto","Volver atrás"} ;
+				
+				int menu3 = JOptionPane.showOptionDialog(null, "¿Seleccione una oppción?", "Empleado", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones3, opciones[3]);
+				
+				switch (menu3) {
+				case 0:
+					String opciones4[] = {"Peliculas", "Juegos"} ;
+					
+					int menu4 = JOptionPane.showOptionDialog(null, "¿Seleccione una oppción?", "Empleado", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones4, opciones4[1]);
+					
+					if(menu4 == 0) {
+						peliculas=empleados.get(posicion).agregarProducto(peliculas,juegos,0);
+					}
+					else if(menu4==1){
+						juegos=empleados.get(posicion).agregarProducto(peliculas,juegos,1);
+					}
+					break;
+					
+				case 1:
+					
+					String opciones5[] = {"Peliculas", "Juegos"} ;
+					
+					int menu5 = JOptionPane.showOptionDialog(null, "¿Seleccione una oppción?", "Empleado", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones5, opciones5[1]);
+					
+					if(menu5 == 0) {
+						peliculas=empleados.get(posicion).modificarProducto(peliculas,juegos,0);
+					}
+					else if(menu5==1){
+						juegos=empleados.get(posicion).modificarProducto(peliculas,juegos,0);
+					}
+					
+					break;
+					
+				case 2:
+					
+					String opciones6[] = {"Peliculas", "Juegos"} ;
+					
+					int menu6 = JOptionPane.showOptionDialog(null, "¿Seleccione una oppción?", "Empleado", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones6, opciones6[1]);
+					
+					if(menu6 == 0) {
+						peliculas=empleados.get(posicion).eliminarProducto(peliculas,juegos,0);
+					}
+					else if(menu6==1){
+						juegos=empleados.get(posicion).eliminarProducto(peliculas,juegos,0);
+					}
+					
+					break;
+					
+				case 3:
+					
+					break;
+					
+				}
 				
 				break;
 				
 			case 2:
-				clientes = empleados.get(posicion).eliminarCliente(clientes);
-				break;
-				
-			case 3:
 				
 				break;
 			}
-			
-			break;
 
-		case 1:
-			
-			String opciones3[] = {"Añadir producto","Modificar producto","Eliminar producto","Volver atrás"} ;
-			
-			int menu3 = JOptionPane.showOptionDialog(null, "¿Seleccione una oppción?", "Empleado", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones3, opciones[3]);
-			
-			switch (menu3) {
-			case 0:
-				String opciones4[] = {"Peliculas", "Juegos"} ;
-				
-				int menu4 = JOptionPane.showOptionDialog(null, "¿Seleccione una oppción?", "Empleado", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones4, opciones4[1]);
-				
-				if(menu4 == 0) {
-					peliculas=empleados.get(posicion).agregarProducto(peliculas,juegos,0);
-				}
-				else if(menu4==1){
-					juegos=empleados.get(posicion).agregarProducto(peliculas,juegos,1);
-				}
-				break;
-				
-			case 1:
-				
-				String opciones5[] = {"Peliculas", "Juegos"} ;
-				
-				int menu5 = JOptionPane.showOptionDialog(null, "¿Seleccione una oppción?", "Empleado", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones5, opciones5[1]);
-				
-				if(menu5 == 0) {
-					peliculas=empleados.get(posicion).modificarProducto(peliculas,juegos,0);
-				}
-				else if(menu5==1){
-					juegos=empleados.get(posicion).modificarProducto(peliculas,juegos,0);
-				}
-				
-				break;
-				
-			case 2:
-				
-				String opciones6[] = {"Peliculas", "Juegos"} ;
-				
-				int menu6 = JOptionPane.showOptionDialog(null, "¿Seleccione una oppción?", "Empleado", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones6, opciones6[1]);
-				
-				if(menu6 == 0) {
-					peliculas=empleados.get(posicion).eliminarProducto(peliculas,juegos,0);
-				}
-				else if(menu6==1){
-					juegos=empleados.get(posicion).eliminarProducto(peliculas,juegos,0);
-				}
-				
-				break;
-				
-			case 3:
-				
-				break;
-				
-			}
-			
-			break;
-			
-		case 2:
-			
-			break;
-		}
+		}while(menu !=2) ;	
 	}
 
 	public static void main(String[] args) {
@@ -292,7 +308,7 @@ public class Main {
 		clientes.add(new Cliente ("Kasioeso", "39073276q", 954323564, "kasioesoestacogido@gmail.com", "Calle San Marcos, 73",43));
 		clientes.add(new Cliente ("Kasioesoo", "39073276q", 954323564, "kasioesoestacogido@gmail.com", "Calle San Marcos, 73",43));
 		empleados.add(new Empleado ("Kasioesoo", "39073276f", 954323564, "kasioesoestacogido@gmail.com", "Calle San Marcos, 73"));
-		peliculas.add(new Pelicula(0, "pp", null, 0, 0, 0, null, null)) ;
+		peliculas.add(new Pelicula(0, "pp", null, 1, 1, 1, null, null)) ;
 		peliculas.add(new Pelicula(0, "pp3", null, 0, 0, 0, null, null)) ;
 		juegos.add(new Juego(0, "hola 1", null, 0, 0, 0, 0, null, false)) ;
 		juegos.add(new Juego(1, "hola 2", null, 0, 0, 0, 0, null, false)) ;
