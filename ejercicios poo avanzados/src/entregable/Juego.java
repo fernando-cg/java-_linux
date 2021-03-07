@@ -15,5 +15,17 @@ public class Juego extends Producto {
 		this.plataforma = plataforma;
 		this.multijugador = multijugador;
 	}
+
+	public void setAnioLanzamiento(int anioLanzamiento) {
+		this.anioLanzamiento = anioLanzamiento;
+	}
+
+	public void setPlataforma(String plataforma) {
+		this.plataforma = plataforma;
+	}
+
+	public void setMultijugador(boolean multijugador) {
+		this.multijugador = multijugador;
+	}
 	
 }

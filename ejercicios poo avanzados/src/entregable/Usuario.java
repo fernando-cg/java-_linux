@@ -27,6 +27,26 @@ public class Usuario {
 		this.email = email;
 		this.direccion = direccion;
 	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+
+	public void setTelefono(int telefono) {
+		this.telefono = telefono;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
 	
 	
 }

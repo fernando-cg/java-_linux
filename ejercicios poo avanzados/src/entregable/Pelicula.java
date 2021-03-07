@@ -12,6 +12,14 @@ public class Pelicula extends Producto {
 		this.duracion = duracion;
 		this.idioma = idioma;
 	}
+
+	public void setDuracion(String duracion) {
+		this.duracion = duracion;
+	}
+
+	public void setIdioma(String idioma) {
+		this.idioma = idioma;
+	}
 	
 	
 }

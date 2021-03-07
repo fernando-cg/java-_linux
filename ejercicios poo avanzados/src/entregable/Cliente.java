@@ -11,6 +11,8 @@ public class Cliente extends Usuario{
 	
 	private int edad ;
 	
+	private static int idNext = 1;
+	
 	public ArrayList<Alquiler> alquilarProducto(ArrayList<Alquiler> alquileres,int empleado, int codigo) {
 		
 		
@@ -59,14 +61,20 @@ public class Cliente extends Usuario{
 		JOptionPane.showMessageDialog(null,"Operacion realizada") ;
 	}
 
-	public Cliente(String nombre, String dni, int telefono, String email, String direccion, int id, int edad) {
+	public Cliente(String nombre, String dni, int telefono, String email, String direccion, int edad) {
 		super(nombre, dni, telefono, email, direccion);
-		this.id = id;
+		id = idNext ;
 		this.edad = edad;
+		idNext++ ;
 	}
 
 	public int getId() {
 		return id;
+	}
+
+
+	public void setEdad(int edad) {
+		this.edad = edad;
 	}
 	
 	
