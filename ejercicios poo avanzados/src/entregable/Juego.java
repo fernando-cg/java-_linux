@@ -8,9 +8,9 @@ public class Juego extends Producto {
 	
 	private boolean multijugador ;
 
-	public Juego(int codigo, String titulo, String genero, int edadRecomendada, double precio, boolean disponible,
+	public Juego(int codigo, String titulo, String genero, int edadRecomendada, double precio,
 			int cantidadDisponible, int anioLanzamiento, String plataforma, boolean multijugador) {
-		super(codigo, titulo, genero, edadRecomendada, precio, disponible, cantidadDisponible);
+		super(codigo, titulo, genero, edadRecomendada, precio, cantidadDisponible);
 		this.anioLanzamiento = anioLanzamiento;
 		this.plataforma = plataforma;
 		this.multijugador = multijugador;
