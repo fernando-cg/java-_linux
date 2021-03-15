@@ -57,7 +57,7 @@ public class Transporte {
 
 	@Override
 	public String toString() {
-		SimpleDateFormat formatter = new SimpleDateFormat("kk:mm");
+		SimpleDateFormat formatter = new SimpleDateFormat("h:mm");
 		return "Transporte ->precio=" + precio + ", tiempo=" + formatter.format(tiempo) + ", capacidad=" + capacidad + "]";
 	}
 
