@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Frame;
@@ -70,6 +71,7 @@ public class Marco extends JFrame {
 	private void colocarPanel() {
 		panel = new JPanel() ; //instanciamos el panel
 		panel.setLayout(null); //tal cual
+		//panel.setBackground(Color.RED);
 		this.add(panel) ;		//se añade el panel
 	}
 	
